@@ -1,4 +1,15 @@
 class Track < ActiveRecord::Base
-  validates :listing, presence: true
+  LISTINGS = %w(REGULAR BONUS)
+  validates :name, presence: true
+  validates :listing, presence: true, inclusion: LISTINGS
   belongs_to :album
+  has_one :author, through: :album, source: :band
+
+  def album_name
+    album.name
+  end
+
+  def author_name
+    author.name
+  end
 end

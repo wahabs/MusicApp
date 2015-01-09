@@ -1,6 +1,7 @@
 class CreateTracks < ActiveRecord::Migration
   def change
     create_table :tracks do |t|
+      t.string :name, null: false
       t.references :album, index: true
       t.text :lyrics
       t.string :listing, null: false

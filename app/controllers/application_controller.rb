@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :redirect_if_not_logged_in
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
   def log_out_user!
     current_user.reset_session_token!
     session[:session_token] = nil
+  end
+
+  def redirect_if_not_logged_in
+    redirect_to new_session_url if current_user.nil?
   end
 
 end

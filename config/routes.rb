@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
 
-  root 'sessions#new'
+  root 'bands#index'
   resource :user
   resource :session, only: [:new, :create, :destroy]
+  resources :bands do
+    resources :albums, only: :new
+  end
+  resources :albums, except: [:index, :new] do
+    resources :tracks, only: :new
+  end
+  resources :tracks, except: [:index, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

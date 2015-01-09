@@ -8,12 +8,14 @@
 </head>
 <body>
 
+<%= link_to "Band List", bands_url %>
+<br>
+
 <% if current_user.nil? %>
-  <%= link_to "Login", new_session_url %>
-  <%= link_to "Sign Up!", new_user_url %>
+  <br><%= link_to "Login", new_session_url %> or <%= link_to "Sign Up!", new_user_url %>
 <% else %>
-  <%= link_to "Profile", user_url %>
-  <%= link_to "Logout", session_url, method: :delete %>
+  <br><%= link_to "Profile", user_url %>
+  <br><%= link_to "Logout", session_url, method: :delete %>
 <% end %>
 
 <%= yield %>

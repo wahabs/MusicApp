@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :redirect_if_not_logged_in, only: :show
 
   def new
@@ -10,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # log me in
+      log_in_user!(@user)
       redirect_to user_url
     else
       render :new
@@ -27,10 +26,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password)
-    end
-
-    def redirect_if_not_logged_in
-      redirect_to new_session_url if current_user.nil?
     end
 
 end
