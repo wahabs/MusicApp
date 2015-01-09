@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150109011121) do
     t.integer  "user_id",    null: false
     t.integer  "track_id",   null: false
     t.text     "body",       null: false
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

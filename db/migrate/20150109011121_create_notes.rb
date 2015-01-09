@@ -4,6 +4,7 @@ class CreateNotes < ActiveRecord::Migration
       t.references :user, index: true, null: false
       t.references :track, index: true, null: false
       t.text :body, null: false
+      t.string :name, null: false, unique: true
 
       t.timestamps null: false
     end
